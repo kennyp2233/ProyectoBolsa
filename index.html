@@ -11,7 +11,7 @@
 
     <body>
 
-        <form method="POST">
+        <form id="formularioDatos" method="POST">
           <table id="tabla">
             <thead>
               <tr>
@@ -33,28 +33,10 @@
       
           <button type="button" id="agregarBtn" onclick="agregarFila()">Agregar</button>
       
-          <input type="submit" name="guardar">
+          <button type="button" name="guardar" onclick="guardarDatos()">Enviar</button>
         </form>
     </div>
-
-
-    <script>
-        function agregarFila() {
-            var table = document.getElementById("tabla").getElementsByTagName('tbody')[0];
-            var newRow = table.insertRow(table.rows.length);
-            var cell1 = newRow.insertCell(0);
-            var cell2 = newRow.insertCell(1);
-            var cell3 = newRow.insertCell(2);
-            var cell4 = newRow.insertCell(3);
-
-            cell1.innerHTML = '<input type="text" name="nombre" required>';
-            cell2.innerHTML = '<input type="date" name="fecha" required>';
-            cell3.innerHTML = '<input type="number" name="precio" required>';
-            cell4.innerHTML = '<input type="number" name="cantidad" required>';
-        }
-    </script>
 </section>
-<button type="button" id="agregarBtn" onclick="agregarFila()">Agregar</button>
 
 
 
