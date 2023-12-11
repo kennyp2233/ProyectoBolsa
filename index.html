@@ -1,59 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Proyecto</title>
 </head>
+
 <body>
-
-    <body>
-
-        <form method="POST">
-          <table id="tabla">
+    <form id="formularioDatos" method="POST">
+        <table id="tabla">
             <thead>
-              <tr>
-                <th>Nombre Accion</th>
-                <th>Fecha de compra</th>
-                <th>Precio de la compra</th>
-                <th>Cantidad</th>
-              </tr>
+                <tr>
+                    <th>Nombre Accion</th>
+                    <th>Fecha de compra</th>
+                    <th>Precio de la compra</th>
+                    <th>Cantidad</th>
+                </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><input type="text" name="nombre" required></td>
-                <td><input type="date" name="fecha" required></td>
-                <td><input type="number" name="precio" required></td>
-                <td><input type="number" name="cantidad" required></td>
-              </tr>
+                <tr>
+                    <td><input type="text" name="nombre" required></td>
+                    <td><input type="date" name="fecha" required></td>
+                    <td><input type="number" name="precio" required></td>
+                    <td><input type="number" name="cantidad" required></td>
+                </tr>
             </tbody>
-          </table>
-      
-          <button type="button" id="agregarBtn" onclick="agregarFila()">Agregar</button>
-      
-          <input type="submit" name="guardar">
-        </form>
-      
-        <script>
-          function agregarFila() {
-            var table = document.getElementById("tabla").getElementsByTagName('tbody')[0];
-            var newRow = table.insertRow(table.rows.length);
-            var cell1 = newRow.insertCell(0);
-            var cell2 = newRow.insertCell(1);
-            var cell3 = newRow.insertCell(2);
-            var cell4 = newRow.insertCell(3);
-      
-            cell1.innerHTML = '<input type="text" name="nombre" required>';
-            cell2.innerHTML = '<input type="date" name="fecha" required>';
-            cell3.innerHTML = '<input type="number" name="precio" required>';
-            cell4.innerHTML = '<input type="number" name="cantidad" required>';
-          }
-        </script>
-      
-      </body>
+        </table>
 
+        <button type="button" id="agregarBtn" onclick="agregarFila()">Agregar</button>
 
+        <button type="submit" name="guardar" onclick="guardarDatos()">Enviar</button>
+    </form>
+    <ul id="listaDatos"></ul>
 
+    <script src="main.js"></script>
+</body>
 
-    </body>
 </html>
