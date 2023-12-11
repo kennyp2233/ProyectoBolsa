@@ -44,13 +44,19 @@ function agregarFila() {
 
     // Limpiar la lista antes de mostrar los datos
     listaDatos.innerHTML = '';
-
-    datos.forEach((compra, index) => {
+    datos.forEach((compra) => {
         const precioTotal = compra.precioCompra * compra.cantidad;
-
-        // Crear un elemento de lista y agregarlo a la lista
-        const listItem = document.createElement('li');
-        listItem.textContent = `${index + 1}. Nombre: ${compra.nombre}, Fecha: ${compra.fechaCompra}, Precio: $${compra.precioCompra.toFixed(2)}, Cantidad: ${compra.cantidad}, Total: $${precioTotal.toFixed(2)}`;
-        listaDatos.appendChild(listItem);
+        let ul = document.createElement('ul')
+        ul.className = 'info'
+        // Crear un HTML para cada conjunto de datos y agregarlo a la lista
+        ul.innerHTML += `
+                <li id="cardNombre">Nombre: ${compra.nombre}</li>
+                <li id="cardFecha">Fecha: ${compra.fechaCompra}</li>
+                <li id="cardPrecio">Precio: $${compra.precioCompra.toFixed(2)}</li>
+                <li id="cardCantidad">Cantidad: ${compra.cantidad}</li>
+                <li id="cardTotal">Total: $${precioTotal.toFixed(2)}</li>
+        `;
+        listaDatos.appendChild(ul)
     });
+    
 }

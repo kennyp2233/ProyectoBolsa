@@ -29,6 +29,13 @@ body h1{
     text-align: center;
 
 }
+.info{
+    list-style-type: none ;
+}
+#listaDatos ul{
+    border: 1px solid black;
+    border-radius: 5px;
+}
 
 
 
