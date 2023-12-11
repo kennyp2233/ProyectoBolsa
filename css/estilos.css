@@ -1,0 +1,43 @@
+body{
+    background-color: blanchedalmond;
+}
+
+body h1{
+    color: black;
+}
+
+#titulo{
+    text-align: center;
+}
+
+#tablaIngreso {
+    width: 50%; /* Puedes ajustar el porcentaje según tus necesidades */
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid black;
+    border-radius: 10px; /* Ajusta el valor de acuerdo a la curvatura que deseas */
+}
+
+#tablaIngreso th, #tablaIngreso td {
+    padding: 8px;
+    text-align: center;
+
+}
+
+
+
+#tabla{
+    margin: 0 auto;
+}
+
+#btnAgregar {
+    float: right;
+    margin-top: 10px; /* Espaciado opcional en la parte superior */
+    margin-right: 2px; /* Espaciado opcional entre los botones */
+}
+
+#btnGuardar {
+    float: right;
+    margin-top: 10px; /* Espaciado opcional en la parte superior */
+    margin-right: 2px; /* Espaciado opcional entre los botones */
+}
