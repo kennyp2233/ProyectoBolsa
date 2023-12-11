@@ -1,46 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<nav><h1 id="titulo">BOLSA DE NY</h1></nav>
+<nav>
+    <h1 id="titulo">BOLSA DE NY</h1>
+</nav>
 
 <section>
     <div id="tablaIngreso">
-        <form method="POST" >
-        <table id="tabla">
-            <thead>
-              <tr>
-                <th>Nombre Accion</th>
-                <th>Fecha de compra</th>
-                <th>Precio de la compra</th>
-                <th>Cantidad</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><input type="text" name="nombre" required></td>
-                <td><input type="date" name="fecha" required></td>
-                <td><input type="number" name="precio" required></td>
-                <td><input type="number" name="cantidad" required></td>
-              </tr>
-            </tbody>
-          </table>
-      
-          <button id="btnAgregar" type="button" id="agregarBtn" onclick="agregarFila()">Agregar</button>
-      
-          <input id="btnGuardar" type="submit" name="guardar">
+        <form id="formularioDatos" method="POST">
+            <table id="tabla">
+                <thead>
+                    <tr>
+                        <th>Nombre Accion</th>
+                        <th>Fecha de compra</th>
+                        <th>Precio de la compra</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="nombre" required></td>
+                        <td><input type="date" name="fecha" required></td>
+                        <td><input type="number" name="precio" required></td>
+                        <td><input type="number" name="cantidad" required></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button id="btnAgregar" type="button" id="agregarBtn" onclick="agregarFila()">Agregar</button>
+
+            <button id="btnGuardar" type="button" name="guardar" onclick="guardarDatos()">Enviar</button>
         </form>
     </div>
-      
-  
 </section>
+<aside>
+    <ul id="listaDatos"></ul>
+</aside>
 
-
-    
-    
+<script src="main.js"></script>
 
 </html>
