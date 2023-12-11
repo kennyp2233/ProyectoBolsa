@@ -1,5 +1,11 @@
+nav{
+    background-color: #89DBFE;
+    padding: 12px;
+    border-radius: 12px;
+}
+
 body{
-    background-color: blanchedalmond;
+    background-color: white;
 }
 
 body h1{
