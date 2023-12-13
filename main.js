@@ -1,5 +1,6 @@
 const compras = [];
 let filas = 0;
+let formInicial = document.getElementById("tablaIngreso").innerHTML;
 function agregarFila() {
     var table = document.getElementById("tabla").getElementsByTagName('tbody')[0];
     var newRow = table.insertRow(table.rows.length);
@@ -36,7 +37,8 @@ function agregarFila() {
     agregarCompras()
     filas = 0
     //Limpiar el formulario
-    document.getElementById('formularioDatos').reset();
+    document.getElementById('tablaIngreso').innerHTML = formInicial;
+    
   }
 
   function mostrarDatosEnLista(datos) {
