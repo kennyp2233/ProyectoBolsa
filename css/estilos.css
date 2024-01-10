@@ -1,4 +1,8 @@
 /* Barra header*/
+body{
+    margin: 0px;
+}
+
 nav {
     padding: 12px;
 }
@@ -91,7 +95,7 @@ section article div h1 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-section article #tablaIngreso {
+#tablaIngreso {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,7 +105,7 @@ section article #tablaIngreso {
     margin-top: 20px;
     border: 2px solid black;
     border-radius: 10px;
-
+    padding-bottom: 20px;
 }
 
 #formularioDatos{
@@ -118,8 +122,13 @@ section article #tablaIngreso {
     background-color: #36291e;
     color: #fff;
     font-size: 15px;
+    border: none;
+    padding: 5px 0px;
+    border-radius: 2px;
 }
-
+#formularioDatos button:hover{
+    background-color: #69482b;
+}
 
 
 
@@ -135,6 +144,7 @@ section article #tablaIngreso {
 
 .info {
     list-style-type: none;
+    width: 20%;
 }
 
 /* Lista de datos */
@@ -145,6 +155,7 @@ section article #tablaIngreso {
     align-items: center;
     height: auto;
     width: 60%;
+    gap: 30px;
 }
 
 
@@ -197,22 +208,6 @@ section article #tablaIngreso {
 #container-equipo .equipo{
     width: 33%;
     display: inline-block;
-}
-
-#container-equipo .equipo h2{
-    color: #fff;
-    font-size: 1.2rem;
-}
-
-#container-equipo .equipo ul{
-    list-style-type: none; /* sin viñetas*/
-}
-#container-equipo .equipo ul li{
-    display: inline-block;
-}
-#container-equipo .equipo ul li a{
-    text-decoration: none;
-    color: #fff;
 }
 #container-equipo .equipo img{
     width: 250px;
