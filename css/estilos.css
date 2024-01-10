@@ -1,8 +1,8 @@
-/* Barra header*/
-body{
+*{
     margin: 0px;
+    box-sizing: border-box;
 }
-
+/* Barra header*/
 nav {
     padding: 12px;
 }
@@ -131,10 +131,6 @@ section article div h1 {
 }
 
 
-
-
-
-
 #tablaIngreso th,
 #tablaIngreso td {
     padding: 8px;
@@ -205,10 +201,6 @@ section article div h1 {
     color: #DDD;
     padding: 30px 0px;
 }
-#container-equipo .equipo{
-    width: 33%;
-    display: inline-block;
-}
 #container-equipo .equipo img{
     width: 250px;
     height: 250px;
@@ -216,5 +208,9 @@ section article div h1 {
     border: 5px solid black;
 }
 
-
+.imagenes-equipo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 
