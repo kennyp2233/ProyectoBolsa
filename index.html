@@ -1,48 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bolsa de valores New York</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://kit.fontawesome.com/3ffe5179f0.js" crossorigin="anonymous"></script>
 </head>
-<nav>
-    <h1 id="titulo">BOLSA DE NY</h1>
-</nav>
 
-<section>
-    <div id="tablaIngreso">
-        <form id="formularioDatos" method="POST">
-            <table id="tabla">
-                <thead>
-                    <tr>
-                        <th>Nombre Accion</th>
-                        <th>Fecha de compra</th>
-                        <th>Precio de la compra</th>
-                        <th>Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="text" name="nombre" required></td>
-                        <td><input type="date" name="fecha" required></td>
-                        <td><input type="number" name="precio" required></td>
-                        <td><input type="number" name="cantidad" required></td>
-                    </tr>
-                </tbody>
-            </table>
+<body>
+    <header>
+        <nav>
+            <section id="menu-empresa">
+                <div id="logo">Bolsa New York <!--este va a ser el logo-->
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
 
-            <button id="btnAgregar" type="button" id="agregarBtn" onclick="agregarFila()">Agregar</button>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Equipo</a></li>
+                    <li><a href="#">Contactos</a></li>
+                </ul>
 
-            <button id="btnGuardar" type="button" name="guardar" onclick="guardarDatos()">Enviar</button>
-        </form>
+            </section>
+        </nav>
+
+    </header>
+
+    <section>
+        <article>
+            <div>
+                <h1>Información Acciones</h1>
+            </div>
+            <div id="tablaIngreso">
+                <form id="formularioDatos" method="POST">
+                    <table id="tabla">
+                        <thead>
+                            <tr>
+                                <th>Nombre Accion</th>
+                                <th>Fecha de compra</th>
+                                <th>Precio de la compra</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" name="nombre" required></td>
+                                <td><input type="date" name="fecha" required></td>
+                                <td><input type="number" name="precio" required></td>
+                                <td><input type="number" name="cantidad" required></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <button id="btnAgregar" type="button" id="agregarBtn" onclick="agregarFila()">Agregar</button>
+                    <button id="btnGuardar" type="button" name="guardar" onclick="guardarDatos()">Enviar</button>
+                </form>
+            </div>
+        </article>
+
+        <article>
+            <div id="listaDatos">
+            </div>
+        </article>
+    </section>
+
+
+
+
+    <div id="container-equipo">
+        <h1>Nuestro equipo</h1>
+        <div class="equipo">
+            <img src="./imagenes/JohanMantilla.jpeg" alt="Johan">
+            <div>
+                <h2>Johan Mantilla</h2>
+            </div>
+        </div>
+
+        <div class="equipo">
+            <img src="./imagenes/BritannyFlores.jpeg" alt="Britanny">
+            <div>
+                <h2>Britanny Flores</h2>
+            </div>
+        </div>
+
+        <div class="equipo">
+            <img src="./imagenes/CarlosLandazuri.jpeg" alt="Carlos">
+            <div>
+                <h2>Carlos landazuri</h2>
+            </div>
+        </div>
     </div>
-</section>
-<aside>
-    <div id="listaDatos"></div>
-</aside>
 
-<script src="main.js"></script>
+
+
+
+
+    <script src="main.js"></script>
+
+
+
+</body>
+
+
 
 </html>
