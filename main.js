@@ -4,6 +4,10 @@ let formInicial = document.getElementById("tablaIngreso").innerHTML;
 function validarCampos() {
   let datos = document.querySelectorAll("input")
   let valido = true;
+  if(datos[2].value<0 && datos[3].value<0){
+    valido = false;
+    alert("Por favor, Ingrese valores no negativos")
+  }
   datos.forEach((dato)=>{
     if(dato.value.length==0)
     valido =false

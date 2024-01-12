@@ -149,8 +149,9 @@ section article div h1 {
 }
 
 /* Lista de datos */
-.datos{
-    margin-top: 20%;
+.cartas{
+    margin-top: 20px;
+    margin-bottom: 20%;
 }
 #listaDatos{
     padding-top: auto;
