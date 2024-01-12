@@ -14,7 +14,7 @@ nav {
 
 
 header {
-    background-color: black;
+    background-color: #111111;
     align-items: center;
 }
 
@@ -108,7 +108,7 @@ section article div h1 {
     width: 60%;
     border-collapse: collapse;
     margin-top: 20px;
-    border: 2px solid black;
+    border: 2px solid #111111;
     border-radius: 10px;
     padding-bottom: 20px;
 }
@@ -165,7 +165,7 @@ section article div h1 {
 
 
 #listaDatos ul {
-    border: 1px solid black;
+    border: 1px solid #111111;
     border-radius: 5px;
     padding: 10px;
 }
@@ -203,7 +203,7 @@ section article div h1 {
     margin-top: 10px;
     width: 100%;
     padding-bottom: 15px;
-    background: black;
+    background: #111111;
     text-align: center;
     color: #fff;
 }
@@ -216,12 +216,15 @@ section article div h1 {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    border: 5px solid black;
+}
+.equipo img:hover{
+    border: 5px solid #ddd;
 }
 
 .imagenes-equipo{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    
 }
 
