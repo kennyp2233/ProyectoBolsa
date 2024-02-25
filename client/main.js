@@ -4,20 +4,20 @@ let formInicial = document.getElementById("tablaIngreso").innerHTML;
 function validarCampos() {
   let datos = document.querySelectorAll("input")
   let valido = true;
-  if(datos[2].value<0 && datos[3].value<0){
+  if (datos[2].value < 0 && datos[3].value < 0) {
     valido = false;
     alert("Por favor, Ingrese valores no negativos")
   }
-  datos.forEach((dato)=>{
-    if(dato.value.length==0)
-    valido =false
+  datos.forEach((dato) => {
+    if (dato.value.length == 0)
+      valido = false
   });
   return valido;
 }
 
 function agregarFila() {
 
-  if(!validarCampos()){
+  if (!validarCampos()) {
     return;
   }
 
@@ -64,7 +64,7 @@ function mostrarDatosEnLista(datos) {
 
   // Limpiar la lista antes de mostrar los datos
   listaDatos.innerHTML = '';
-  datos.forEach( async (compra) => {
+  datos.forEach(async (compra) => {
     let datosMercado = await getPrecioMercado(compra.nombre)
     console.log(datosMercado)
     const precioTotal = compra.precioCompra * compra.cantidad;
@@ -77,8 +77,8 @@ function mostrarDatosEnLista(datos) {
                 <li id="cardPrecio">Precio: $${compra.precioCompra.toFixed(2)}</li>
                 <li id="cardCantidad">Cantidad: ${compra.cantidad}</li>
                 <li id="cardTotal">Total: $${precioTotal.toFixed(2)}</li>
-                <li id="cardTotal">Cambio: ${calcularCambio(datosMercado,compra).toFixed(2)}%</li>
-                <li id="cardTotal">Ganacia/Perdida: $${(datosMercado.c*compra.cantidad).toFixed(2)}</li>
+                <li id="cardTotal">Cambio: ${calcularCambio(datosMercado, compra).toFixed(2)}%</li>
+                <li id="cardTotal">Ganacia/Perdida: $${(datosMercado.c * compra.cantidad).toFixed(2)}</li>
         `;
     listaDatos.appendChild(ul)
   });
@@ -87,18 +87,18 @@ function mostrarDatosEnLista(datos) {
 
 }
 
-async function getPrecioMercado(symbol){
+async function getPrecioMercado(symbol) {
   let urlPrecio = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=clls8cpr01qske4s3m10clls8cpr01qske4s3m1g`;
   let res = await fetch(urlPrecio)
   let datos = await res.json();
   console.log(datos)
   return datos
 }
-function calcularGanaciaPerdida(datos,compra){
+function calcularGanaciaPerdida(datos, compra) {
   console.log(datos)
-  return datos.c*compra.cantidad;
+  return datos.c * compra.cantidad;
 }
-function calcularCambio(datos,compra){
+function calcularCambio(datos, compra) {
   console.log(datos)
-  return (datos.c-compra.precioCompra)/compra.precioCompra 
+  return (datos.c - compra.precioCompra) / compra.precioCompra
 }

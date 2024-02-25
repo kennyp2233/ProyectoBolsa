@@ -5,10 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bolsa de valores New York</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="./css/estilos.css">
+    <!-- FontAwesome para íconos -->
     <script src="https://kit.fontawesome.com/3ffe5179f0.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- DataTables para manejar tablas dinámicas -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -98,14 +103,78 @@
     </div>
 
 
-    
 
+
+    <!-- Bootstrap Bundle con Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+    <!-- jQuery (necesario para DataTables y AJAX) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <!-- Moment.js para manejar fechas (útil para trabajar con fechas de mercado) -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
 
 </body>
 
 
 <script src="main.js"></script>
+<script>
+    $(document).ready(function () {
+        // Esconder alertas inicialmente
+        $('#alertSuccess').hide();
+        $('#alertError').hide();
+
+        // Evento click para agregar una acción
+        $('#btnAgregar').click(function () {
+            agregarAccion();
+        });
+
+        // Cargar acciones existentes
+        cargarAcciones();
+    });
+
+    // Función para agregar una acción
+    function agregarAccion() {
+        var nombre = $('#nombre').val();
+        var fechaCompra = $('#fecha').val();
+        var precioCompra = $('#precio').val();
+        var cantidad = $('#cantidad').val();
+
+        // Validaciones aquí...
+
+        // Suponiendo que tienes una API para agregar acciones
+        $.ajax({
+            url: 'http://127.0.0.1:9999/stocks',
+            method: 'POST',
+            data: JSON.stringify({ name: nombre, fechaCompra: fechaCompra, precioCompra: precioCompra, cantidad: cantidad }),
+            contentType: 'application/json'
+        }).done(function (data) {
+            $('#alertSuccess').show();
+            cargarAcciones(); // Recargar la lista de acciones
+        }).fail(function (error) {
+            $('#alertError').show();
+        });
+    }
+
+    // Función para cargar y mostrar acciones
+    function cargarAcciones() {
+        // Limpia la lista de acciones existente
+        $('#listaAcciones').html("");
+
+        // Obtiene las acciones de tu backend
+        $.getJSON("http://127.0.0.1:9999/stocks", function (acciones) {
+            acciones.forEach(accion => {
+                // Cálculos de Total, Cambio y Ganancia/Perdida
+                // Aquí puedes llamar a tus métodos calcularCambio y calcularGananciaPerdida
+                // y agregarlos al HTML que vas a insertar
+
+                // Insertar cada acción en el HTML
+                $('#listaAcciones').append(/* HTML de cada acción */);
+            });
+        });
+    }
+</script>
+
 </html>
