@@ -5,7 +5,7 @@ let filas = 0;
 
 
 let formInicial = document.getElementById("tablaIngreso").innerHTML;
-
+obtenerDatosBD();
 
 
 function validarCampos() {
@@ -58,7 +58,8 @@ async function agregarCompras() {
     const respuesta = await crearStock(stock);
     console.log('Stock creado con éxito:', respuesta);
     compras.push(stock);
-    mostrarDatosEnLista(compras);
+    let comprasBD = await obtenerTodosLosStocks();
+    mostrarDatosEnLista(comprasBD);
   } catch (error) {
     console.error('Error al crear el stock:', error);
   }
@@ -73,48 +74,82 @@ function guardarDatos() {
 
 }
 
-async function mostrarDatosEnLista(datos) {
+async function obtenerDatosBD() {
+  try {
+    var datos = await obtenerTodosLosStocks();
+    datos = await obtenerTodosLosStocks();
+    console.log('Datos:', datos);
+    mostrarDatosEnLista(datos);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+function mostrarDatosEnLista(datos) {
   const listaDatos = document.getElementById('listaDatos');
 
   // Limpiar la lista antes de mostrar los datos
   listaDatos.innerHTML = '';
-  datos.forEach(async (compra) => {
-    let datosMercado = await obtenerTodosLosStocks(compra.nombre)
+  datos.forEach(async (compra,index) => {
+    let datosMercado = await getPrecioMercado(compra.nombre)
     console.log(datosMercado)
     const precioTotal = compra.precioCompra * compra.cantidad;
     let ul = document.createElement('ul')
     ul.className = 'info'
     // Crear un HTML para cada conjunto de datos y agregarlo a la lista
     ul.innerHTML += `
-                <li id="cardNombre">Nombre: ${compra.nombre}</li>
-                <li id="cardFecha">Fecha: ${compra.fechaCompra}</li>
-                <li id="cardPrecio">Precio: $${compra.precioCompra.toFixed(2)}</li>
-                <li id="cardCantidad">Cantidad: ${compra.cantidad}</li>
-                <li id="cardTotal">Total: $${precioTotal.toFixed(2)}</li>
-                <li id="cardTotal">Cambio: ${calcularCambio(datosMercado, compra).toFixed(2)}%</li>
-                <li id="cardTotal">Ganacia/Perdida: $${(datosMercado.c * compra.cantidad).toFixed(2)}</li>
+                <li id="cardId_${index}">Id: ${compra.id}</li>
+                <li id="cardNombre_${index}">Nombre: ${compra.name}</li>
+                <li id="cardFecha_${index}">Fecha: ${compra.fechaCompra}</li>
+                <li id="cardPrecio_${index}">Precio: $${compra.precioCompra.toFixed(2)}</li>
+                <li id="cardCantidad_${index}">Cantidad: ${compra.cantidad}</li>
+                <li id="cardTotal_${index}">Total: $${precioTotal.toFixed(2)}</li>
+                <li id="cardTotal_${index}">Cambio: ${calcularCambio(datosMercado, compra).toFixed(2)}%</li>
+                <li id="cardTotal_${index}">Ganacia/Perdida: $${(datosMercado.c * compra.cantidad).toFixed(2)}</li>
+                <button id="btnEliminar_${index}" type="button" name="eliminar">Eliminar</button>
         `;
     listaDatos.appendChild(ul)
   });
+
+
+
 }
 
+
+
+async function getPrecioMercado(symbol) {
+  let urlPrecio = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=clls8cpr01qske4s3m10clls8cpr01qske4s3m1g`;
+  let res = await fetch(urlPrecio)
+  let datos = await res.json();
+  console.log(datos)
+  return datos
+}
 function calcularGanaciaPerdida(datos, compra) {
   console.log(datos)
   return datos.c * compra.cantidad;
 }
-
 function calcularCambio(datos, compra) {
   console.log(datos)
   return (datos.c - compra.precioCompra) / compra.precioCompra
 }
 
-document.getElementById('btnAgregar').addEventListener('click', () => {
-  // Lógica para agregar una compra
-  console.log("hola");
-  agregarCompras();
-});
-
 document.getElementById('btnGuardar').addEventListener('click', () => {
   // Lógica para guardar los datos
   guardarDatos();
+});
+
+
+listaDatos.addEventListener('click', (event) => {
+  
+  if (event.target && event.target.matches('button[name="eliminar"]')) {
+      
+      const index = event.target.id.split('_')[1];
+      var liElement = document.getElementById(`cardId_${index}`);
+      var id = liElement.textContent.split(": ")[1].trim();
+      console.log("compra.id es:", id);
+      
+      eliminarStock(id);
+      
+  }
+  obtenerDatosBD();
 });
