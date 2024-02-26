@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:latest
+    ports:
+      - "33060:3306"
+    volumes:
+      - ./tablas.sql:/docker-entrypoint-initdb.d/tablas.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: stockexchange
+
