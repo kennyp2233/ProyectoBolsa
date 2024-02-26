@@ -1,8 +1,9 @@
+
 const api = {};
 
 api.obtenerTodosLosStocks = async function() {
   try {
-    const respuesta = await fetch('http://127.0.0.1:9000/stocks');
+    const respuesta = await fetch('http://127.0.0.1:9999/stocks');
     if (!respuesta.ok) {
       throw new Error('Error al obtener los stocks');
     }
@@ -26,6 +27,9 @@ api.crearStock = async function(stock) {
       throw new Error('Error al crear el stock');
     }
     const stockCreado = await respuesta.json();
+    console.log('Respuesta:', stockCreado);
+
+
     return stockCreado;
   } catch (error) {
     console.error('Error:', error);

@@ -44,7 +44,7 @@ function agregarFila() {
 }
 
 async function agregarCompras() {
-  const nombre = document.getElementsByName('nombre')[filas].value;
+  const name = document.getElementsByName('nombre')[filas].value;
   const fechaCompra = document.getElementsByName('fecha')[filas].value;
   const precioCompra = parseFloat(document.getElementsByName('precio')[filas].value);
   const cantidad = parseInt(document.getElementsByName('cantidad')[filas].value);
@@ -52,8 +52,9 @@ async function agregarCompras() {
     alert('Por favor, ingresa valores numéricos válidos para Precio de Compra y Cantidad.');
     return;
   }
-  const stock = { nombre, fechaCompra, precioCompra, cantidad };
+  const stock = {name,fechaCompra,precioCompra,cantidad};
   try {
+    console.log('Creando stock:', stock);
     const respuesta = await crearStock(stock);
     console.log('Stock creado con éxito:', respuesta);
     compras.push(stock);
@@ -64,6 +65,7 @@ async function agregarCompras() {
 }
 
 function guardarDatos() {
+  
   agregarCompras()
   filas = 0
   //Limpiar el formulario
