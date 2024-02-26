@@ -1,6 +1,13 @@
+const { obtenerTodosLosStocks, crearStock, actualizarStock, eliminarStock } = api;
+
 const compras = [];
 let filas = 0;
+
+
 let formInicial = document.getElementById("tablaIngreso").innerHTML;
+
+
+
 function validarCampos() {
   let datos = document.querySelectorAll("input")
   let valido = true;
@@ -36,7 +43,7 @@ function agregarFila() {
   filas += 1;
 }
 
-function agregarCompras() {
+async function agregarCompras() {
   const nombre = document.getElementsByName('nombre')[filas].value;
   const fechaCompra = document.getElementsByName('fecha')[filas].value;
   const precioCompra = parseFloat(document.getElementsByName('precio')[filas].value);
@@ -45,12 +52,17 @@ function agregarCompras() {
     alert('Por favor, ingresa valores numéricos válidos para Precio de Compra y Cantidad.');
     return;
   }
-  compras.push({ nombre, fechaCompra, precioCompra, cantidad });
-
-
-  console.log(compras);
-  mostrarDatosEnLista(compras)
+  const stock = { nombre, fechaCompra, precioCompra, cantidad };
+  try {
+    const respuesta = await crearStock(stock);
+    console.log('Stock creado con éxito:', respuesta);
+    compras.push(stock);
+    mostrarDatosEnLista(compras);
+  } catch (error) {
+    console.error('Error al crear el stock:', error);
+  }
 }
+
 function guardarDatos() {
   agregarCompras()
   filas = 0
@@ -59,13 +71,13 @@ function guardarDatos() {
 
 }
 
-function mostrarDatosEnLista(datos) {
+async function mostrarDatosEnLista(datos) {
   const listaDatos = document.getElementById('listaDatos');
 
   // Limpiar la lista antes de mostrar los datos
   listaDatos.innerHTML = '';
   datos.forEach(async (compra) => {
-    let datosMercado = await getPrecioMercado(compra.nombre)
+    let datosMercado = await obtenerTodosLosStocks(compra.nombre)
     console.log(datosMercado)
     const precioTotal = compra.precioCompra * compra.cantidad;
     let ul = document.createElement('ul')
@@ -82,23 +94,25 @@ function mostrarDatosEnLista(datos) {
         `;
     listaDatos.appendChild(ul)
   });
-
-
-
 }
 
-async function getPrecioMercado(symbol) {
-  let urlPrecio = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=clls8cpr01qske4s3m10clls8cpr01qske4s3m1g`;
-  let res = await fetch(urlPrecio)
-  let datos = await res.json();
-  console.log(datos)
-  return datos
-}
 function calcularGanaciaPerdida(datos, compra) {
   console.log(datos)
   return datos.c * compra.cantidad;
 }
+
 function calcularCambio(datos, compra) {
   console.log(datos)
   return (datos.c - compra.precioCompra) / compra.precioCompra
 }
+
+document.getElementById('btnAgregar').addEventListener('click', () => {
+  // Lógica para agregar una compra
+  console.log("hola");
+  agregarCompras();
+});
+
+document.getElementById('btnGuardar').addEventListener('click', () => {
+  // Lógica para guardar los datos
+  guardarDatos();
+});

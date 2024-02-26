@@ -61,8 +61,8 @@
                         </tbody>
                     </table>
 
-                    <button id="btnAgregar" type="button" id="agregarBtn" onclick="agregarFila()">Agregar</button>
-                    <button id="btnGuardar" type="button" name="guardar" onclick="guardarDatos()">Enviar</button>
+                    <button id="btnAgregar" type="button" id="agregarBtn">Agregar</button>
+                    <button id="btnGuardar" type="button" name="guardar">Enviar</button>
                 </form>
             </div>
         </article>
@@ -76,31 +76,6 @@
 
 
 
-    <div id="container-equipo">
-        <h1>Nuestro equipo</h1>
-        <div class="imagenes-equipo">
-            <div class="equipo">
-                <img src="./imagenes/JohanMantilla.jpeg" alt="Johan">
-                <div>
-                    <h2>Johan Mantilla</h2>
-                </div>
-            </div>
-
-            <div class="equipo">
-                <img src="./imagenes/BritannyFlores.jpeg" alt="Britanny">
-                <div>
-                    <h2>Britanny Flores</h2>
-                </div>
-            </div>
-
-            <div class="equipo">
-                <img src="./imagenes/CarlosLandazuri.jpeg" alt="Carlos">
-                <div>
-                    <h2>Carlos landazuri</h2>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
@@ -118,63 +93,8 @@
 
 </body>
 
-
+<script src="../src/services/api.js"></script>
 <script src="main.js"></script>
-<script>
-    $(document).ready(function () {
-        // Esconder alertas inicialmente
-        $('#alertSuccess').hide();
-        $('#alertError').hide();
 
-        // Evento click para agregar una acción
-        $('#btnAgregar').click(function () {
-            agregarAccion();
-        });
-
-        // Cargar acciones existentes
-        cargarAcciones();
-    });
-
-    // Función para agregar una acción
-    function agregarAccion() {
-        var nombre = $('#nombre').val();
-        var fechaCompra = $('#fecha').val();
-        var precioCompra = $('#precio').val();
-        var cantidad = $('#cantidad').val();
-
-        // Validaciones aquí...
-
-        // Suponiendo que tienes una API para agregar acciones
-        $.ajax({
-            url: 'http://127.0.0.1:9999/stocks',
-            method: 'POST',
-            data: JSON.stringify({ name: nombre, fechaCompra: fechaCompra, precioCompra: precioCompra, cantidad: cantidad }),
-            contentType: 'application/json'
-        }).done(function (data) {
-            $('#alertSuccess').show();
-            cargarAcciones(); // Recargar la lista de acciones
-        }).fail(function (error) {
-            $('#alertError').show();
-        });
-    }
-
-    // Función para cargar y mostrar acciones
-    function cargarAcciones() {
-        // Limpia la lista de acciones existente
-        $('#listaAcciones').html("");
-
-        // Obtiene las acciones de tu backend
-        $.getJSON("http://127.0.0.1:9999/stocks", function (acciones) {
-            acciones.forEach(accion => {
-                // Cálculos de Total, Cambio y Ganancia/Perdida
-                // Aquí puedes llamar a tus métodos calcularCambio y calcularGananciaPerdida
-                // y agregarlos al HTML que vas a insertar
-
-                // Insertar cada acción en el HTML
-                $('#listaAcciones').append(/* HTML de cada acción */);
-            });
-        });
-    }
-</script>
 
 </html>
